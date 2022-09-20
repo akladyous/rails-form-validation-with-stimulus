@@ -1,0 +1,12 @@
+<%= form_errors = capture do %>
+	<% if profile.errors.any? %>
+		<div style="color: red">
+			<h2><%= pluralize(profile.errors.count, "error") %> prohibited this profile from being saved:</h2>
+			<ul>
+				<% profile.errors.each do |error| %>
+					<li><%= error.full_message %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+<% end %>

@@ -6,7 +6,7 @@
                 validate_target: 'input',
                 action: "change->validate#handleChange",
                 constrain: profile_constrains[:first_name] } } %>
-			<%# feedback_for :profile, :first_name%>
+			<%= feedback_for profile, :first_name%>
 		</div>
 		<div class="form-group mb-2" >
 			<%= form.label :last_name, class: 'form-label' %>
@@ -14,6 +14,7 @@
                 validate_target: 'input',
                 action: "change->validate#handleChange",
                 constrain: profile_constrains[:last_name] } } %>
+			<%= feedback_for profile, :last_name%>
 		</div>
 		<div class="form-group mb-2" >
 			<%= form.label :age, class: 'form-label' %>
@@ -21,6 +22,7 @@
                 validate_target: 'input',
                 action: "change->validate#handleChange",
                 constrain: profile_constrains[:age] } } %>
+			<%= feedback_for profile, :age %>
 		</div>
 		<div class="form-group">
 			<%= form.submit %>
