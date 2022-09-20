@@ -17,7 +17,6 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
-    debugger
   end
 
   # POST /profiles or /profiles.json
@@ -66,6 +65,6 @@ class ProfilesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def profile_params
-      params.require(:profile).permit(:first_name, :last_name, :age, :birthdate)
+      params.require(:profile).permit(:first_name, :last_name, :age)
     end
 end

@@ -4,10 +4,8 @@ one:
   first_name: MyString
   last_name: MyString
   age: 1
-  birthdate: 2022-09-20 15:12:49
 
 two:
   first_name: MyString
   last_name: MyString
   age: 1
-  birthdate: 2022-09-20 15:12:49

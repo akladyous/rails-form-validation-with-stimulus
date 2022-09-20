@@ -15,7 +15,6 @@ class ProfilesTest < ApplicationSystemTestCase
     click_on "New profile"
 
     fill_in "Age", with: @profile.age
-    fill_in "Birthdate", with: @profile.birthdate
     fill_in "First name", with: @profile.first_name
     fill_in "Last name", with: @profile.last_name
     click_on "Create Profile"
@@ -29,7 +28,6 @@ class ProfilesTest < ApplicationSystemTestCase
     click_on "Edit this profile", match: :first
 
     fill_in "Age", with: @profile.age
-    fill_in "Birthdate", with: @profile.birthdate
     fill_in "First name", with: @profile.first_name
     fill_in "Last name", with: @profile.last_name
     click_on "Update Profile"
