@@ -17,6 +17,7 @@ class ProfilesController < ApplicationController
 
   # GET /profiles/1/edit
   def edit
+    debugger
   end
 
   # POST /profiles or /profiles.json
