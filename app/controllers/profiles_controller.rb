@@ -13,7 +13,6 @@ class ProfilesController < ApplicationController
   # GET /profiles/new
   def new
     @profile = Profile.new
-
     @constrains = {
       first_name: { presence: { allowEmpty: false, message: "^First name can't be blank" } },
       last_name:  { presence: { allowEmpty: false, message: "^Last name can't be blank" } },
