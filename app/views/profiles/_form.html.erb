@@ -17,6 +17,7 @@
 			<%= feedback_for profile, :last_name%>
 		</div>
 		<div class="form-group mb-2" >
+			<%= dom_id(profile, :age) %>
 			<%= form.label :age, class: 'form-label' %>
 			<%= form.number_field :age, { class: 'form-control', data: {
                 validate_target: 'input',
@@ -25,8 +26,8 @@
 			<%= feedback_for profile, :age %>
 		</div>
 		<div class="form-group">
-			<%= form.submit %>
+			<%= form.submit "Submit", class: "btn btn-primary border-0", data: { action: "validate#handleForm" } %>
 		</div>
 	<% end %>
 </div>
-<%= console %>
+<% console %>

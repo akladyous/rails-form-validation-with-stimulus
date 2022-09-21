@@ -14,20 +14,16 @@ export default class extends Controller {
                 this._constrains[inputTag.name] = JSON.parse(inputTag.getAttribute('data-constrain'))
                 inputTag.removeAttribute('data-constrain')
             }
-
             let feedBackTag = document.createElement('div')
-            feedBackTag.id = `${inputTag.id}-feedback`;
+            feedBackTag.classList.add("d-block", "invalid-feedback")
             inputTag.parentNode.insertAdjacentElement('beforeend', feedBackTag)
         }
-        console.log('connected...')
     };
     disconnect() {
-        this.inputTargets
-            .map(inputTag => inputTag.id.concat('-feedback'))
-            .forEach(feedback => {
-                document.getElementById(feedback).remove();
-            })
-        console.log('disconnected...')
+        // debugger
+        document
+            .querySelectorAll('div[class$="invalid-feedback"]')
+            .forEach(element => element.parentNode.removeChild(element))
     };
     getAttributesFor(attribute) {
         return attribute.match(/(^[^\[]+)(?=\[)|(([^\[\]]+)(?=\]))/g)
@@ -82,10 +78,8 @@ export default class extends Controller {
             target.inputTag.classList.remove('is-invalid')
             target.inputFeedback.textContent = ""
             target.inputFeedback.setAttribute('class', "")
-
         })
     }
-
     initalizeForm() {
         for (let inputTag of this.element) {
             if (inputTag.type !== 'hidden' || inputTag.type === 'submit') {
