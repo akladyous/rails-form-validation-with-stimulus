@@ -17,7 +17,6 @@
 			<%= feedback_for profile, :last_name%>
 		</div>
 		<div class="form-group mb-2" >
-			<%= dom_id(profile, :age) %>
 			<%= form.label :age, class: 'form-label' %>
 			<%= form.number_field :age, { class: 'form-control', data: {
                 validate_target: 'input',
