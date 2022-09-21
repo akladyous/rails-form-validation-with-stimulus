@@ -1,5 +1,6 @@
 <% flash.each  do |flash_type, message| %>
-	<%= content_tag :div, nil, class: bs_class_for(flash_type) do  %>
+	<%= debugger %>
+	<%= content_tag :div, nil, class: bootstrap_class_for(flash_type) do  %>
 		<%= content_tag :div, class: 'container' do %>
 			<button class="close" data-dismiss="alert"><span>×</span></button>
 			<%= message %>

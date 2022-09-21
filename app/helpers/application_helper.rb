@@ -10,4 +10,14 @@ module ApplicationHelper
       model_name = object.model_name.param_key unless object.is_a? Class
       prefix ? "#{model_name}_#{prefix}" : object
   end
+
+  def bootstrap_class_for(flash_type)
+    debugger
+    {
+      success: 'alert-success',
+      error: 'alert-danger',
+      alert: 'alert-warning',
+      notice: 'alert-info'
+    }.fetch(flash_type) || flash_type.to_s
+  end
 end
