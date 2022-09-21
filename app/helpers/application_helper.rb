@@ -12,12 +12,11 @@ module ApplicationHelper
   end
 
   def bootstrap_class_for(flash_type)
-    debugger
     {
-      success: 'alert-success',
-      error: 'alert-danger',
-      alert: 'alert-warning',
-      notice: 'alert-info'
-    }.fetch(flash_type) || flash_type.to_s
+      success:  'alert alert-success alert-dismissible fade show',
+      error:    'alert alert-danger alert-dismissible fade show',
+      alert:    'alert alert-warning alert-dismissible fade show',
+      notice:   'alert alert-info alert-dismissible fade show'
+    }.fetch(flash_type.to_sym) || flash_type
   end
 end

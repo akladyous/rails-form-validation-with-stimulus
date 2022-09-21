@@ -28,7 +28,8 @@ class ProfilesController < ApplicationController
         format.html { redirect_to profile_url(@profile), notice: "Profile was successfully created." }
         format.json { render :show, status: :created, location: @profile }
       else
-        format.html { render :new, status: :unprocessable_entity, notice: "Profile error." }
+        flash.now[:error] = "errore"
+        format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @profile.errors, status: :unprocessable_entity }
       end
     end
