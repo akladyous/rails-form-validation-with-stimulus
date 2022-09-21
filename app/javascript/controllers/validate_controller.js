@@ -14,15 +14,17 @@ export default class extends Controller {
                 this._constrains[inputTag.name] = JSON.parse(inputTag.getAttribute('data-constrain'))
                 inputTag.removeAttribute('data-constrain')
             }
-            let feedBackTag = document.createElement('div')
-            feedBackTag.classList.add("d-block", "invalid-feedback")
-            inputTag.parentNode.insertAdjacentElement('beforeend', feedBackTag)
+            if (!document.getElementById(`${inputTag.id}_feedback`)) {
+                let feedBackTag = document.createElement('div')
+                feedBackTag.classList.add("d-block", "invalid-feedback")
+                feedBackTag.id = `${inputTag.id}_feedback`
+                inputTag.parentNode.insertAdjacentElement('beforeend', feedBackTag)
+            }
         }
     };
     disconnect() {
-        // debugger
         document
-            .querySelectorAll('div[class$="invalid-feedback"]')
+            .querySelectorAll('div[id$="_feedback"]')
             .forEach(element => element.parentNode.removeChild(element))
     };
     getAttributesFor(attribute) {
@@ -48,24 +50,26 @@ export default class extends Controller {
         } else {
             let inputTags = this.inputTargets.map(input => input.name)
             this.removeErrors(inputTags)
-            // this.disconnect()
             this.formTarget.submit();
+            this.disconnect()
         }
     };
     currentTarget(name) {
-        return {
-            inputTag: this.inputTargets.find(inputTag => inputTag.name === name),
-            inputFeedback: this.element.querySelector(`[name="${name}"]`).nextElementSibling
-        }
+        return this.inputTargets.find(inputTag => inputTag.name === name)
     };
+    currentFeedback(name) {
+        let targetId = this.currentTarget(name).id
+        return document.querySelector(`#${targetId}_feedback`)
+    }
     displayErrors(errors) {
         if (!errors) return
         for (let inputName in errors) {
             const errorMsg = errors[inputName]
             const target = this.currentTarget(inputName)
-            this.addClass(target.inputTag, 'is-invalid')
-            target.inputFeedback.textContent = errorMsg.at(0)
-            this.addClass(target.inputFeedback, 'invalid-feedback')
+            const feedback = this.currentFeedback(inputName)
+            this.addClass(target, 'is-invalid')
+            feedback.textContent = errorMsg.at(0)
+            this.addClass(feedback, 'invalid-feedback')
         }
         this._errors = {}
     };
@@ -73,11 +77,11 @@ export default class extends Controller {
         if (!inputTags) return
         inputTags.forEach(inputName => {
             const target = this.currentTarget(inputName)
-            // if (!this.isEmpty(target.inputTag.value)) { }
-            this.addClass(target.inputTag, 'is-valid')
-            target.inputTag.classList.remove('is-invalid')
-            target.inputFeedback.textContent = ""
-            target.inputFeedback.setAttribute('class', "")
+            const feedback = this.currentFeedback(inputName)
+            this.addClass(target, 'is-valid')
+            target.classList.remove('is-invalid')
+            feedback.textContent = ""
+            feedback.setAttribute('class', "")
         })
     }
     initalizeForm() {
